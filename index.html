@@ -939,7 +939,8 @@
             }
 
             .modal-content {
-                margin: 1rem;
+                margin-inline: auto;
+                min-width: 95vw;
             }
 
             .services-grid,
@@ -1796,6 +1797,12 @@
             sidebar.style.display = 'none';
         }
 
+        const mobnav = document.querySelectorAll('.sidebar a');
+
+        mobnav.forEach(link => {
+        link.addEventListener('click', hideSidebar);
+         });
+
         // Initialize Lucide icons
         lucide.createIcons();
 
@@ -2006,5 +2013,6 @@
     </script>
 
 </body>
+
 
 </html>
