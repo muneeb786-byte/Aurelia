@@ -1,9 +1,7 @@
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE Hotel - Premium Hospitality Experience</title>
+    <title>AURELIA - The Luxury Hotel</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
@@ -33,7 +31,7 @@
 
         nav.scrolled {
             position: fixed;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .nav-container {
@@ -76,44 +74,72 @@
             cursor: pointer;
         }
 
-        .sidebar {
+        /* Mobile Menu Overlay */
+        .mobile-nav {
             position: fixed;
             top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
             right: 0;
-            height: max-content;
-            width: 220px;
-            z-index: 999;
-            background-color: rgba(255, 255, 255, 0.932);
-            backdrop-filter: blur(10px);
-            box-shadow: -10px 0 10px rgba(0, 0, 0, 0.078);
-            display: none;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            margin-top: 5px;
-            border-radius: 7px 0px 0px 7px;
-
         }
 
-        ul.sidebar {
+        .mobile-nav-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-header .logo {
+            font-size: 1.25rem;
+        }
+
+        .mobile-close {
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
             list-style: none;
-            padding-left: 20px;
+            padding: 2rem;
         }
 
-        .sidebar li {
-            width: 100%;
-            padding: 10px 0 10px 10px;
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
         }
 
-        .sidebar a {
-            width: 100%;
-            color: var(--secondary-color);
+        .mobile-nav-links a {
             text-decoration: none;
+            color: #171717;
+            font-size: 1.125rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
         }
 
-        .sidebar li:hover {
-            background-color: var(--primary-varient);
-            transition: 0.2s ease;
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            display: none;
+        }
+
+        .mobile-overlay.active {
+            display: block;
         }
 
         /* Page Content */
@@ -125,16 +151,44 @@
             display: block;
         }
 
-        /* Hero Section */
+        /* Hero Section with Video */
         .hero {
             height: 90vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1600') center/cover;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
             position: relative;
+            z-index: 2;
         }
 
         .hero-content h1 {
@@ -147,7 +201,7 @@
 
         .hero-content p {
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255,255,255,0.9);
             margin-bottom: 2rem;
             font-weight: 400;
             animation: fadeInUp 0.8s ease 0.2s backwards;
@@ -241,7 +295,7 @@
 
         .service-card:hover {
             border-color: #d4d4d4;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
 
@@ -262,39 +316,40 @@
             font-size: 0.9375rem;
         }
 
-        /* Rooms Preview Section */
+        /* Rooms Carousel Section */
         .rooms-preview {
             padding: 6rem 2rem;
             background: #fafafa;
+            position: relative;
         }
 
-        .rooms-scroll {
+        .carousel-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .rooms-carousel {
             display: flex;
+            transition: transform 0.5s ease;
             gap: 2rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 2rem 0;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .rooms-scroll::-webkit-scrollbar {
-            display: none;
         }
 
         .room-card {
-            min-width: 350px;
+            min-width: calc(33.333% - 1.33rem);
             background: white;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid #e5e5e5;
             transition: all 0.3s ease;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .room-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
         }
 
         .room-card img {
@@ -324,6 +379,261 @@
             font-size: 1.125rem;
             font-weight: 600;
             color: #171717;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 1px solid #e5e5e5;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .carousel-btn:hover {
+            background: #fafafa;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .carousel-btn.prev {
+            left: 1rem;
+        }
+
+        .carousel-btn.next {
+            right: 1rem;
+        }
+
+        .carousel-dots-rooms {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .dot-room {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d4d4d4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot-room.active {
+            background: #171717;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Room Detail Page */
+        .room-detail-page {
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
+        .room-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .room-slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .room-slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .room-slide {
+            min-width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .room-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .slider-btn:hover {
+            background: white;
+        }
+
+        .slider-btn.prev {
+            left: 1rem;
+        }
+
+        .slider-btn.next {
+            right: 1rem;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .room-detail-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .room-detail-info h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .room-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .room-detail-info p {
+            color: #525252;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .room-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .room-detail-sidebar {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 6rem;
+        }
+
+        .room-price-large {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .price-subtitle {
+            color: #525252;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .booking-form-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #171717;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         /* Restaurant Section */
@@ -362,7 +672,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
             padding: 2rem;
         }
@@ -501,40 +811,6 @@
             border: 1px solid #e5e5e5;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9375rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e5e5e5;
-            border-radius: 6px;
-            font-size: 0.9375rem;
-            transition: all 0.2s ease;
-            font-family: inherit;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #171717;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
         /* Rooms Page */
         .rooms-page {
             padding: 8rem 2rem 4rem;
@@ -587,7 +863,7 @@
 
         .menu-item:hover {
             border-color: #d4d4d4;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
 
@@ -739,112 +1015,10 @@
             font-size: 0.875rem;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            min-width: 700px;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: white;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            background: #fafafa;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-body h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
-        }
-
-        .modal-body p {
-            color: #525252;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.9375rem;
-        }
-
-        .modal-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9375rem;
-        }
-
-        .modal-price {
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 2rem 0;
-            letter-spacing: -0.03em;
-        }
-
         /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes fadeInUp {
@@ -852,19 +1026,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -901,18 +1062,21 @@
             font-size: 0.9375rem;
         }
 
-        .hide {
-            display: none;
-        }
-
-
-
-        .nav-links-mobile ul {
-            padding: 2rem;
-            list-style: none;
-        }
-
         /* Responsive */
+        @media (max-width: 1024px) {
+            .room-card {
+                min-width: calc(50% - 1rem);
+            }
+
+            .room-detail-content {
+                grid-template-columns: 1fr;
+            }
+
+            .room-detail-sidebar {
+                position: static;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -930,17 +1094,13 @@
                 font-size: 2rem;
             }
 
-            .rooms-scroll {
-                gap: 1rem;
-            }
-
             .room-card {
-                min-width: 280px;
+                min-width: 100%;
             }
 
-            .modal-content {
-                margin-inline: auto;
-                min-width: 95vw;
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
             }
 
             .services-grid,
@@ -952,57 +1112,73 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+
+            .room-slider-container {
+                height: 300px;
+            }
+
+            .room-features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">AURELIA</div>
+            <div class="mobile-close" onclick="closeMobileMenu()">
+                <i data-lucide="x" size="24" stroke-width="1.5"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#" onclick="navigateTo('home'); closeMobileMenu();">Home</a></li>
+            <li><a href="#" onclick="navigateTo('rooms'); closeMobileMenu();">Rooms</a></li>
+            <li><a href="#" onclick="navigateTo('restaurant'); closeMobileMenu();">Restaurant</a></li>
+            <li><a href="#" onclick="navigateTo('contact'); closeMobileMenu();">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">LUXE</div>
+            <div class="logo">AURELIA</div>
             <ul class="nav-links">
                 <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
                 <li><a href="#" data-page="rooms" class="nav-link">Rooms</a></li>
                 <li><a href="#" data-page="restaurant" class="nav-link">Restaurant</a></li>
                 <li><a href="#" data-page="contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="mobile-menu">
-                <i onclick=showSidebar() data-lucide="menu" stroke-width="1.5"></i>
+            <div class="mobile-menu" onclick="openMobileMenu()">
+                <i data-lucide="menu" stroke-width="1.5"></i>
             </div>
-
         </div>
-        <ul class="sidebar">
-            <li><a href="#" onclick=hideSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="26px"
-                        viewBox="0 -960 960 960" width="26px" fill="black">
-                        <path
-                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                    </svg></a></li>
-            <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
-            <li><a href="#" data-page="rooms" class="nav-link">Rooms</a></li>
-            <li><a href="#" data-page="restaurant" class="nav-link">Restaurant</a></li>
-            <li><a href="#" data-page="contact" class="nav-link">Contact</a></li>
-        </ul>
     </nav>
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
-        <!-- Hero Section -->
+        <!-- Hero Section with Video -->
         <section class="hero">
+            <video class="hero-video" autoplay="" muted="" loop="" playsinline="">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-elegant-hotel-lobby-with-people-walking-4787-large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Experience Luxury Redefined</h1>
-                <p>Indulge in world-class hospitality and unmatched comfort</p>
-                <a href="#" class="btn-primary" onclick="showBookingModal(); return false;">Book Now</a>
+                <h1>AURELIA - The Luxury Hotel</h1>
+                <p>Experience unparalleled luxury and sophistication</p>
+                <a href="#" class="btn-primary" onclick="navigateTo('rooms'); return false;">Explore Rooms</a>
             </div>
         </section>
 
         <!-- Services Section -->
         <section class="services-section">
             <video class="video-background" autoplay="" muted="" loop="" playsinline="">
-                <source
-                    src="https://assets.mixkit.co/videos/preview/mixkit-hotel-lobby-with-people-walking-4787-large.mp4"
-                    type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-hotel-lobby-with-people-walking-4787-large.mp4" type="video/mp4">
             </video>
             <div class="section-content">
                 <h2 class="section-title">Our Premium Services</h2>
@@ -1012,8 +1188,7 @@
                             <i data-lucide="bed-double" size="32" stroke-width="1.5"></i>
                         </div>
                         <h3>Luxury Rooms</h3>
-                        <p>Experience ultimate comfort in our elegantly designed rooms with stunning views and premium
-                            amenities.</p>
+                        <p>Experience ultimate comfort in our elegantly designed rooms with stunning views and premium amenities.</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
@@ -1027,54 +1202,91 @@
                             <i data-lucide="calendar" size="32" stroke-width="1.5"></i>
                         </div>
                         <h3>Event Hall</h3>
-                        <p>Host unforgettable events in our state-of-the-art banquet halls with professional event
-                            planning services.</p>
+                        <p>Host unforgettable events in our state-of-the-art banquet halls with professional event planning services.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Rooms Preview -->
+        <!-- Rooms Carousel -->
         <section class="rooms-preview">
             <div class="section-content">
                 <h2 class="section-title">Featured Rooms</h2>
-                <div class="rooms-scroll" id="roomsScroll">
-                    <div class="room-card" onclick="showRoomDetails(1)">
-                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600"
-                            alt="Deluxe Suite">
-                        <div class="room-info">
-                            <h3>Deluxe Suite</h3>
-                            <p>Spacious suite with king bed and city views</p>
-                            <div class="room-price">$299/night</div>
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+                        <i data-lucide="chevron-left" size="24" stroke-width="1.5"></i>
+                    </button>
+                    <div class="rooms-carousel" id="roomsCarousel">
+                        <div class="room-card" onclick="showRoomDetail(1)">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600" alt="Deluxe Suite">
+                            <div class="room-info">
+                                <h3>Deluxe Suite</h3>
+                                <p>Spacious suite with king bed and city views</p>
+                                <div class="room-price">$299/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(2)">
+                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600" alt="Executive Room">
+                            <div class="room-info">
+                                <h3>Executive Room</h3>
+                                <p>Modern amenities with work desk and lounge access</p>
+                                <div class="room-price">$199/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(3)">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600" alt="Presidential Suite">
+                            <div class="room-info">
+                                <h3>Presidential Suite</h3>
+                                <p>Ultimate luxury with private terrace and butler service</p>
+                                <div class="room-price">$599/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(4)">
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600" alt="Garden View">
+                            <div class="room-info">
+                                <h3>Garden View Room</h3>
+                                <p>Peaceful retreat overlooking lush gardens</p>
+                                <div class="room-price">$179/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(5)">
+                            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600" alt="Ocean View">
+                            <div class="room-info">
+                                <h3>Ocean View Suite</h3>
+                                <p>Breathtaking ocean views with private balcony</p>
+                                <div class="room-price">$399/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(6)">
+                            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600" alt="Family Suite">
+                            <div class="room-info">
+                                <h3>Family Suite</h3>
+                                <p>Two bedrooms perfect for families with kids</p>
+                                <div class="room-price">$349/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(7)">
+                            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600" alt="Penthouse">
+                            <div class="room-info">
+                                <h3>Penthouse Suite</h3>
+                                <p>Two-floor luxury with panoramic views</p>
+                                <div class="room-price">$899/night</div>
+                            </div>
+                        </div>
+                        <div class="room-card" onclick="showRoomDetail(8)">
+                            <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600" alt="Spa Suite">
+                            <div class="room-info">
+                                <h3>Spa Suite</h3>
+                                <p>In-room spa facilities with wellness access</p>
+                                <div class="room-price">$449/night</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(2)">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600"
-                            alt="Executive Room">
-                        <div class="room-info">
-                            <h3>Executive Room</h3>
-                            <p>Modern amenities with work desk and lounge access</p>
-                            <div class="room-price">$199/night</div>
-                        </div>
-                    </div>
-                    <div class="room-card" onclick="showRoomDetails(3)">
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600"
-                            alt="Presidential Suite">
-                        <div class="room-info">
-                            <h3>Presidential Suite</h3>
-                            <p>Ultimate luxury with private terrace and butler service</p>
-                            <div class="room-price">$599/night</div>
-                        </div>
-                    </div>
-                    <div class="room-card" onclick="showRoomDetails(4)">
-                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600" alt="Garden View">
-                        <div class="room-info">
-                            <h3>Garden View Room</h3>
-                            <p>Peaceful retreat overlooking lush gardens</p>
-                            <div class="room-price">$179/night</div>
-                        </div>
-                    </div>
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">
+                        <i data-lucide="chevron-right" size="24" stroke-width="1.5"></i>
+                    </button>
                 </div>
+                <div class="carousel-dots-rooms" id="carouselDots"></div>
             </div>
         </section>
 
@@ -1098,8 +1310,7 @@
                         </div>
                     </div>
                     <div class="restaurant-item">
-                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600"
-                            alt="Breakfast Buffet">
+                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600" alt="Breakfast Buffet">
                         <div class="restaurant-overlay">
                             <h3>Breakfast Buffet</h3>
                             <p>International selection</p>
@@ -1115,8 +1326,7 @@
                 <h2 class="section-title">Guest Reviews</h2>
                 <div class="testimonial-carousel">
                     <div class="testimonial-item active">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200"
-                            alt="Sarah Johnson" class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Sarah Johnson" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
@@ -1124,14 +1334,12 @@
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                         </div>
-                        <p class="testimonial-text">"An absolutely wonderful experience. The attention to detail and
-                            exceptional service made our stay unforgettable."</p>
+                        <p class="testimonial-text">"An absolutely wonderful experience. The attention to detail and exceptional service made our stay unforgettable."</p>
                         <div class="testimonial-author">Sarah Johnson</div>
                         <div class="testimonial-role">Business Executive</div>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Michael Chen"
-                            class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Michael Chen" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
@@ -1139,14 +1347,12 @@
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                         </div>
-                        <p class="testimonial-text">"The perfect blend of luxury and comfort. Every aspect of the hotel
-                            exceeded our expectations."</p>
+                        <p class="testimonial-text">"The perfect blend of luxury and comfort. Every aspect of the hotel exceeded our expectations."</p>
                         <div class="testimonial-author">Michael Chen</div>
                         <div class="testimonial-role">Travel Blogger</div>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200"
-                            alt="Emma Rodriguez" class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Emma Rodriguez" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
@@ -1154,8 +1360,7 @@
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                             <i data-lucide="star" size="20" fill="#fbbf24" stroke-width="1.5"></i>
                         </div>
-                        <p class="testimonial-text">"From the elegant rooms to the exquisite dining, everything was
-                            flawless. Highly recommended!"</p>
+                        <p class="testimonial-text">"From the elegant rooms to the exquisite dining, everything was flawless. Highly recommended!"</p>
                         <div class="testimonial-author">Emma Rodriguez</div>
                         <div class="testimonial-role">Designer</div>
                     </div>
@@ -1192,7 +1397,7 @@
                             <i data-lucide="mail" size="20" stroke-width="1.5"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>info@luxehotel.com</p>
+                                <p>info@aureliahotel.com</p>
                             </div>
                         </div>
                     </div>
@@ -1221,7 +1426,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>LUXE Hotel</h3>
+                    <h3>AURELIA - The Luxury Hotel</h3>
                     <p>Experience the finest in luxury hospitality. Where elegance meets comfort.</p>
                     <div class="footer-social">
                         <div class="social-icon">
@@ -1255,11 +1460,11 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>123 Luxury Avenue<br>New York, NY 10001</p>
-                    <p>Phone: +1 (555) 123-4567<br>Email: info@luxehotel.com</p>
+                    <p>Phone: +1 (555) 123-4567<br>Email: info@aureliahotel.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 LUXE Hotel. All rights reserved.</p>
+                <p>© 2024 AURELIA - The Luxury Hotel. All rights reserved.</p>
             </div>
         </footer>
     </div>
@@ -1270,34 +1475,31 @@
             <div class="section-content">
                 <h1 class="section-title">Our Rooms</h1>
                 <div class="rooms-grid">
-                    <div class="room-card" onclick="showRoomDetails(1)">
-                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600"
-                            alt="Deluxe Suite">
+                    <div class="room-card" onclick="showRoomDetail(1)">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600" alt="Deluxe Suite">
                         <div class="room-info">
                             <h3>Deluxe Suite</h3>
                             <p>Spacious suite with king bed and city views</p>
                             <div class="room-price">$299/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(2)">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600"
-                            alt="Executive Room">
+                    <div class="room-card" onclick="showRoomDetail(2)">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600" alt="Executive Room">
                         <div class="room-info">
                             <h3>Executive Room</h3>
                             <p>Modern amenities with work desk and lounge access</p>
                             <div class="room-price">$199/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(3)">
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600"
-                            alt="Presidential Suite">
+                    <div class="room-card" onclick="showRoomDetail(3)">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600" alt="Presidential Suite">
                         <div class="room-info">
                             <h3>Presidential Suite</h3>
                             <p>Ultimate luxury with private terrace and butler service</p>
                             <div class="room-price">$599/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(4)">
+                    <div class="room-card" onclick="showRoomDetail(4)">
                         <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600" alt="Garden View">
                         <div class="room-info">
                             <h3>Garden View Room</h3>
@@ -1305,7 +1507,7 @@
                             <div class="room-price">$179/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(5)">
+                    <div class="room-card" onclick="showRoomDetail(5)">
                         <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600" alt="Ocean View">
                         <div class="room-info">
                             <h3>Ocean View Suite</h3>
@@ -1313,16 +1515,15 @@
                             <div class="room-price">$399/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(6)">
-                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600"
-                            alt="Family Suite">
+                    <div class="room-card" onclick="showRoomDetail(6)">
+                        <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600" alt="Family Suite">
                         <div class="room-info">
                             <h3>Family Suite</h3>
                             <p>Two bedrooms perfect for families with kids</p>
                             <div class="room-price">$349/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(7)">
+                    <div class="room-card" onclick="showRoomDetail(7)">
                         <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600" alt="Penthouse">
                         <div class="room-info">
                             <h3>Penthouse Suite</h3>
@@ -1330,7 +1531,7 @@
                             <div class="room-price">$899/night</div>
                         </div>
                     </div>
-                    <div class="room-card" onclick="showRoomDetails(8)">
+                    <div class="room-card" onclick="showRoomDetail(8)">
                         <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600" alt="Spa Suite">
                         <div class="room-info">
                             <h3>Spa Suite</h3>
@@ -1346,7 +1547,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>LUXE Hotel</h3>
+                    <h3>AURELIA - The Luxury Hotel</h3>
                     <p>Experience the finest in luxury hospitality. Where elegance meets comfort.</p>
                     <div class="footer-social">
                         <div class="social-icon">
@@ -1380,11 +1581,141 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>123 Luxury Avenue<br>New York, NY 10001</p>
-                    <p>Phone: +1 (555) 123-4567<br>Email: info@luxehotel.com</p>
+                    <p>Phone: +1 (555) 123-4567<br>Email: info@aureliahotel.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 LUXE Hotel. All rights reserved.</p>
+                <p>© 2024 AURELIA - The Luxury Hotel. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ROOM DETAIL PAGE -->
+    <div id="roomDetail" class="page">
+        <div class="room-detail-page">
+            <div class="room-detail-container">
+                <!-- Room Image Slider -->
+                <div class="room-slider-container">
+                    <div class="room-slider" id="roomSlider">
+                        <!-- Images will be populated by JavaScript -->
+                    </div>
+                    <button class="slider-btn prev" onclick="moveSlider(-1)">
+                        <i data-lucide="chevron-left" size="24" stroke-width="1.5"></i>
+                    </button>
+                    <button class="slider-btn next" onclick="moveSlider(1)">
+                        <i data-lucide="chevron-right" size="24" stroke-width="1.5"></i>
+                    </button>
+                    <div class="slider-dots" id="sliderDots">
+                        <!-- Dots will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Room Details and Booking -->
+                <div class="room-detail-content">
+                    <div class="room-detail-info">
+                        <h1 id="roomDetailTitle"></h1>
+                        <span class="room-category" id="roomCategory"></span>
+                        <p id="roomDetailDescription"></p>
+                        
+                        <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Room Features</h3>
+                        <div class="room-features-grid" id="roomFeatures">
+                            <!-- Features will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="room-detail-sidebar">
+                        <div class="room-price-large" id="roomDetailPrice"></div>
+                        <p class="price-subtitle">Per night</p>
+
+                        <form class="booking-form-inline" onsubmit="handleRoomBooking(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Room Category</label>
+                                <select required="" id="roomCategorySelect">
+                                    <option value="">Select Category</option>
+                                    <option value="simple">Simple Room - Standard</option>
+                                    <option value="deluxe">Deluxe Room - Premium</option>
+                                    <option value="luxury">Luxury Suite - Ultimate</option>
+                                    <option value="presidential">Presidential - Exclusive</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Check-in Date</label>
+                                <input type="date" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Check-out Date</label>
+                                <input type="date" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Number of Guests</label>
+                                <input type="number" min="1" max="4" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Special Requests</label>
+                                <textarea></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%;">Book Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AURELIA - The Luxury Hotel</h3>
+                    <p>Experience the finest in luxury hospitality. Where elegance meets comfort.</p>
+                    <div class="footer-social">
+                        <div class="social-icon">
+                            <i data-lucide="facebook" size="20" stroke-width="1.5"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i data-lucide="twitter" size="20" stroke-width="1.5"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i data-lucide="instagram" size="20" stroke-width="1.5"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i data-lucide="linkedin" size="20" stroke-width="1.5"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="navigateTo('home'); return false;">Home</a>
+                    <a href="#" onclick="navigateTo('rooms'); return false;">Rooms</a>
+                    <a href="#" onclick="navigateTo('restaurant'); return false;">Restaurant</a>
+                    <a href="#" onclick="navigateTo('contact'); return false;">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Room Service</a>
+                    <a href="#">Spa &amp; Wellness</a>
+                    <a href="#">Event Planning</a>
+                    <a href="#">Concierge</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>123 Luxury Avenue<br>New York, NY 10001</p>
+                    <p>Phone: +1 (555) 123-4567<br>Email: info@aureliahotel.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 AURELIA - The Luxury Hotel. All rights reserved.</p>
             </div>
         </footer>
     </div>
@@ -1394,14 +1725,13 @@
         <div class="restaurant-page">
             <div class="section-content">
                 <h1 class="section-title">Our Menu</h1>
-
+                
                 <div class="menu-section">
                     <div class="menu-category">
                         <h2>Starters</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=600"
-                                    alt="Caesar Salad" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=600" alt="Caesar Salad" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Caesar Salad</h3>
                                     <p>Crisp romaine, parmesan, croutons, classic dressing</p>
@@ -1409,8 +1739,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=600"
-                                    alt="Bruschetta" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=600" alt="Bruschetta" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Bruschetta</h3>
                                     <p>Toasted bread, tomatoes, basil, garlic, olive oil</p>
@@ -1418,8 +1747,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600" alt="Soup"
-                                    class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600" alt="Soup" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Soup of the Day</h3>
                                     <p>Chef's special seasonal soup</p>
@@ -1427,8 +1755,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600"
-                                    alt="Calamari" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600" alt="Calamari" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Calamari Fritti</h3>
                                     <p>Crispy fried squid with lemon aioli</p>
@@ -1442,8 +1769,7 @@
                         <h2>Main Course</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600"
-                                    alt="Grilled Salmon" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600" alt="Grilled Salmon" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Grilled Salmon</h3>
                                     <p>Atlantic salmon, seasonal vegetables, lemon butter</p>
@@ -1451,8 +1777,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600"
-                                    alt="Ribeye Steak" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600" alt="Ribeye Steak" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Ribeye Steak</h3>
                                     <p>12oz prime beef, mashed potatoes, red wine jus</p>
@@ -1460,8 +1785,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600"
-                                    alt="Pasta Carbonara" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600" alt="Pasta Carbonara" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Pasta Carbonara</h3>
                                     <p>Spaghetti, bacon, egg, parmesan, black pepper</p>
@@ -1469,8 +1793,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600"
-                                    alt="Chicken Piccata" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600" alt="Chicken Piccata" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Chicken Piccata</h3>
                                     <p>Pan-seared chicken, lemon caper sauce, pasta</p>
@@ -1484,8 +1807,7 @@
                         <h2>Desserts</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600"
-                                    alt="Tiramisu" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600" alt="Tiramisu" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Tiramisu</h3>
                                     <p>Classic Italian dessert with espresso and mascarpone</p>
@@ -1493,8 +1815,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=600"
-                                    alt="Chocolate Lava Cake" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=600" alt="Chocolate Lava Cake" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Chocolate Lava Cake</h3>
                                     <p>Warm chocolate cake with vanilla ice cream</p>
@@ -1542,7 +1863,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>LUXE Hotel</h3>
+                    <h3>AURELIA - The Luxury Hotel</h3>
                     <p>Experience the finest in luxury hospitality. Where elegance meets comfort.</p>
                     <div class="footer-social">
                         <div class="social-icon">
@@ -1576,11 +1897,11 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>123 Luxury Avenue<br>New York, NY 10001</p>
-                    <p>Phone: +1 (555) 123-4567<br>Email: info@luxehotel.com</p>
+                    <p>Phone: +1 (555) 123-4567<br>Email: info@aureliahotel.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 LUXE Hotel. All rights reserved.</p>
+                <p>© 2024 AURELIA - The Luxury Hotel. All rights reserved.</p>
             </div>
         </footer>
     </div>
@@ -1614,7 +1935,7 @@
                             <i data-lucide="mail" size="24" stroke-width="1.5"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>info@luxehotel.com<br>reservations@luxehotel.com</p>
+                                <p>info@aureliahotel.com<br>reservations@aureliahotel.com</p>
                             </div>
                         </div>
                         <div class="info-item">
@@ -1654,26 +1975,18 @@
             </div>
 
             <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                 </iframe>
             </div>
 
             <div class="section-content">
                 <div class="about-section">
-                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800" alt="About Hotel"
-                        class="about-image">
+                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800" alt="About Hotel" class="about-image">
                     <div class="about-text">
-                        <h2>About LUXE Hotel</h2>
-                        <p>LUXE Hotel has been a landmark of luxury hospitality since 1985. Our commitment to excellence
-                            and attention to detail has made us a preferred destination for discerning travelers from
-                            around the world.</p>
-                        <p>With 200 elegantly appointed rooms and suites, world-class dining options, and
-                            state-of-the-art facilities, we offer an unparalleled experience that combines timeless
-                            elegance with modern comfort.</p>
-                        <p>Our dedicated team of hospitality professionals is committed to making every stay memorable,
-                            whether you're traveling for business or pleasure.</p>
+                        <h2>About AURELIA</h2>
+                        <p>AURELIA - The Luxury Hotel has been a landmark of exceptional hospitality since 1985. Our commitment to excellence and attention to detail has made us a preferred destination for discerning travelers from around the world.</p>
+                        <p>With 200 elegantly appointed rooms and suites, world-class dining options, and state-of-the-art facilities, we offer an unparalleled experience that combines timeless elegance with modern comfort.</p>
+                        <p>Our dedicated team of hospitality professionals is committed to making every stay memorable, whether you're traveling for business or pleasure.</p>
                     </div>
                 </div>
             </div>
@@ -1683,7 +1996,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>LUXE Hotel</h3>
+                    <h3>AURELIA - The Luxury Hotel</h3>
                     <p>Experience the finest in luxury hospitality. Where elegance meets comfort.</p>
                     <div class="footer-social">
                         <div class="social-icon">
@@ -1717,94 +2030,31 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>123 Luxury Avenue<br>New York, NY 10001</p>
-                    <p>Phone: +1 (555) 123-4567<br>Email: info@luxehotel.com</p>
+                    <p>Phone: +1 (555) 123-4567<br>Email: info@aureliahotel.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 LUXE Hotel. All rights reserved.</p>
+                <p>© 2024 AURELIA - The Luxury Hotel. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
-    <!-- Room Details Modal -->
-    <div id="roomModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('roomModal')">
-                <i data-lucide="x" size="20" stroke-width="1.5"></i>
-            </button>
-            <img id="modalRoomImage" class="modal-image" src="" alt="">
-            <div class="modal-body">
-                <h2 id="modalRoomTitle"></h2>
-                <p id="modalRoomDescription"></p>
-                <div class="modal-features" id="modalRoomFeatures"></div>
-                <div class="modal-price" id="modalRoomPrice"></div>
-                <button class="btn-primary" onclick="showBookingModal()">Book This Room</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Booking Form Modal -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('bookingModal')">
-                <i data-lucide="x" size="20" stroke-width="1.5"></i>
-            </button>
-            <div class="modal-body">
-                <h2>Book Your Stay</h2>
-                <form onsubmit="handleBooking(event)">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Check-in Date</label>
-                        <input type="date" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Check-out Date</label>
-                        <input type="date" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Number of Guests</label>
-                        <input type="number" min="1" max="4" required="">
-                    </div>
-                    <div class="form-group">
-                        <label>Special Requests</label>
-                        <textarea></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%;">Confirm Booking</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script>
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'flex';
-        }
-
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'none';
-        }
-
-        const mobnav = document.querySelectorAll('.sidebar a');
-
-        mobnav.forEach(link => {
-        link.addEventListener('click', hideSidebar);
-         });
-
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Mobile Menu Functions
+        function openMobileMenu() {
+            document.getElementById('mobileNav').classList.add('active');
+            document.getElementById('mobileOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileNav').classList.remove('active');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
         // Navigation scroll effect
         window.addEventListener('scroll', () => {
@@ -1820,21 +2070,20 @@
         function navigateTo(pageId) {
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
-
+            
             navLinks.forEach(l => l.classList.remove('active'));
-            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
-
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) activeLink.classList.add('active');
+            
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
             lucide.createIcons();
         }
 
         // Navigation
         const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
-
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1842,6 +2091,267 @@
                 navigateTo(pageId);
             });
         });
+
+        // Rooms Carousel
+        let currentCarouselIndex = 0;
+        const carousel = document.getElementById('roomsCarousel');
+        let carouselInterval;
+
+        function updateCarousel() {
+            const cardWidth = carousel.querySelector('.room-card').offsetWidth;
+            const gap = 32; // 2rem
+            const offset = currentCarouselIndex * (cardWidth + gap);
+            carousel.style.transform = `translateX(-${offset}px)`;
+            updateCarouselDots();
+        }
+
+        function moveCarousel(direction) {
+            const totalCards = carousel.querySelectorAll('.room-card').length;
+            const visibleCards = Math.floor(carousel.parentElement.offsetWidth / (carousel.querySelector('.room-card').offsetWidth + 32));
+            const maxIndex = totalCards - visibleCards;
+            
+            currentCarouselIndex += direction;
+            
+            if (currentCarouselIndex < 0) {
+                currentCarouselIndex = maxIndex;
+            } else if (currentCarouselIndex > maxIndex) {
+                currentCarouselIndex = 0;
+            }
+            
+            updateCarousel();
+            resetCarouselInterval();
+        }
+
+        function createCarouselDots() {
+            const dotsContainer = document.getElementById('carouselDots');
+            const totalCards = carousel.querySelectorAll('.room-card').length;
+            const visibleCards = Math.floor(carousel.parentElement.offsetWidth / (carousel.querySelector('.room-card').offsetWidth + 32));
+            const totalDots = totalCards - visibleCards + 1;
+            
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'dot-room';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => {
+                    currentCarouselIndex = i;
+                    updateCarousel();
+                    resetCarouselInterval();
+                };
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateCarouselDots() {
+            const dots = document.querySelectorAll('.dot-room');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCarouselIndex);
+            });
+        }
+
+        function autoScrollCarousel() {
+            moveCarousel(1);
+        }
+
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(autoScrollCarousel, 3000);
+        }
+
+        // Initialize carousel
+        window.addEventListener('load', () => {
+            createCarouselDots();
+            carouselInterval = setInterval(autoScrollCarousel, 3000);
+        });
+
+        window.addEventListener('resize', () => {
+            createCarouselDots();
+            updateCarousel();
+        });
+
+        // Room data with multiple images
+        const roomsData = {
+            1: {
+                title: "Deluxe Suite",
+                category: "Luxury Suite",
+                images: [
+                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                    "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
+                    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+                    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800"
+                ],
+                description: "Experience luxury in our spacious Deluxe Suite featuring a king-size bed, separate living area, and stunning city views. Perfect for both business and leisure travelers seeking the ultimate in comfort and sophistication.",
+                features: ["King Size Bed", "City View", "Free Wi-Fi", "Mini Bar", "Smart TV", "Coffee Maker", "Room Service", "Premium Toiletries"],
+                price: "$299"
+            },
+            2: {
+                title: "Executive Room",
+                category: "Deluxe Room",
+                images: [
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+                    "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+                    "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
+                ],
+                description: "Modern and sophisticated, our Executive Room offers the perfect workspace with premium amenities and exclusive lounge access for the business traveler.",
+                features: ["Queen Size Bed", "Work Desk", "Lounge Access", "Free Wi-Fi", "Smart TV", "Premium Toiletries", "Iron & Board", "Safe Box"],
+                price: "$199"
+            },
+            3: {
+                title: "Presidential Suite",
+                category: "Presidential - Exclusive",
+                images: [
+                    "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+                ],
+                description: "The pinnacle of luxury, our Presidential Suite offers unmatched elegance with a private terrace, butler service, and panoramic views of the city.",
+                features: ["Master Bedroom", "Private Terrace", "Butler Service", "Jacuzzi", "Dining Area", "Home Theater", "Full Kitchen", "Wine Cellar"],
+                price: "$599"
+            },
+            4: {
+                title: "Garden View Room",
+                category: "Simple Room",
+                images: [
+                    "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+                    "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800",
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+                    "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
+                ],
+                description: "A peaceful retreat overlooking our beautifully landscaped gardens, perfect for those seeking tranquility and relaxation.",
+                features: ["Queen Size Bed", "Garden View", "Free Wi-Fi", "Smart TV", "Mini Fridge", "Safe Box", "Coffee Maker", "Air Conditioning"],
+                price: "$179"
+            },
+            5: {
+                title: "Ocean View Suite",
+                category: "Luxury Suite",
+                images: [
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+                    "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800"
+                ],
+                description: "Wake up to breathtaking ocean views from your private balcony in this elegantly appointed suite.",
+                features: ["King Size Bed", "Ocean View", "Private Balcony", "Free Wi-Fi", "Smart TV", "Premium Amenities", "Room Service", "Mini Bar"],
+                price: "$399"
+            },
+            6: {
+                title: "Family Suite",
+                category: "Deluxe Room",
+                images: [
+                    "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800",
+                    "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+                    "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800"
+                ],
+                description: "Spacious accommodations perfect for families, featuring two bedrooms and a comfortable living area.",
+                features: ["Two Bedrooms", "Living Room", "Kitchenette", "Free Wi-Fi", "Smart TV", "Kids Amenities", "Family Package", "Connecting Rooms"],
+                price: "$349"
+            },
+            7: {
+                title: "Penthouse Suite",
+                category: "Presidential - Exclusive",
+                images: [
+                    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+                    "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
+                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+                ],
+                description: "The epitome of luxury living, our Penthouse Suite offers expansive space across two floors with panoramic views and exclusive amenities.",
+                features: ["Two Floor Layout", "Panoramic Views", "Private Elevator", "Personal Concierge", "Full Kitchen", "Wine Cellar", "Butler Service", "Home Cinema"],
+                price: "$899"
+            },
+            8: {
+                title: "Spa Suite",
+                category: "Luxury Suite",
+                images: [
+                    "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
+                    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+                    "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+                ],
+                description: "Indulge in ultimate relaxation with our Spa Suite featuring an in-room massage area, aromatherapy, and private wellness center access.",
+                features: ["King Size Bed", "Spa Bath", "Massage Area", "Aromatherapy", "Yoga Space", "Wellness Access", "Steam Room", "Premium Products"],
+                price: "$449"
+            }
+        };
+
+        // Show room detail page
+        let currentSlideIndex = 0;
+
+        function showRoomDetail(roomId) {
+            const room = roomsData[roomId];
+            
+            // Populate room details
+            document.getElementById('roomDetailTitle').textContent = room.title;
+            document.getElementById('roomCategory').textContent = room.category;
+            document.getElementById('roomDetailDescription').textContent = room.description;
+            document.getElementById('roomDetailPrice').textContent = room.price;
+            
+            // Populate features
+            const featuresContainer = document.getElementById('roomFeatures');
+            featuresContainer.innerHTML = room.features.map(feature => 
+                `<div class="feature-item">
+                    <i data-lucide="check" size="16" stroke-width="1.5"></i>
+                    <span>${feature}</span>
+                </div>`
+            ).join('');
+            
+            // Populate slider
+            const slider = document.getElementById('roomSlider');
+            slider.innerHTML = room.images.map(img => 
+                `<div class="room-slide">
+                    <img src="${img}" alt="${room.title}">
+                </div>`
+            ).join('');
+            
+            // Populate slider dots
+            const dotsContainer = document.getElementById('sliderDots');
+            dotsContainer.innerHTML = room.images.map((_, index) => 
+                `<span class="slider-dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></span>`
+            ).join('');
+            
+            currentSlideIndex = 0;
+            
+            // Show room detail page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('roomDetail').classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            lucide.createIcons();
+        }
+
+        // Slider functions
+        function moveSlider(direction) {
+            const slider = document.getElementById('roomSlider');
+            const slides = slider.querySelectorAll('.room-slide');
+            
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            } else if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            }
+            
+            slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            updateSliderDots();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            const slider = document.getElementById('roomSlider');
+            slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            updateSliderDots();
+        }
+
+        function updateSliderDots() {
+            const dots = document.querySelectorAll('.slider-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
 
         // Testimonial Carousel
         let currentTestimonial = 0;
@@ -1851,7 +2361,7 @@
         function showTestimonial(index) {
             testimonials.forEach(t => t.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
-
+            
             testimonials[index].classList.add('active');
             dots[index].classList.add('active');
             currentTestimonial = index;
@@ -1864,131 +2374,10 @@
             showTestimonial(currentTestimonial);
         }, 5000);
 
-        // Auto-scroll rooms
-        const roomsScroll = document.getElementById('roomsScroll');
-        let scrollAmount = 0;
-        let scrollDirection = 1;
-
-        function autoScrollRooms() {
-            if (roomsScroll) {
-                scrollAmount += scrollDirection * 1;
-                roomsScroll.scrollLeft = scrollAmount;
-
-                if (scrollAmount >= roomsScroll.scrollWidth - roomsScroll.clientWidth) {
-                    scrollDirection = -1;
-                } else if (scrollAmount <= 0) {
-                    scrollDirection = 1;
-                }
-            }
-        }
-
-        setInterval(autoScrollRooms, 30);
-
-        // Room data
-        const roomsData = {
-            1: {
-                title: "Deluxe Suite",
-                image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
-                description: "Experience luxury in our spacious Deluxe Suite featuring a king-size bed, separate living area, and stunning city views. Perfect for both business and leisure travelers.",
-                features: ["King Size Bed", "City View", "Free Wi-Fi", "Mini Bar", "Smart TV", "Coffee Maker"],
-                price: "$299/night"
-            },
-            2: {
-                title: "Executive Room",
-                image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-                description: "Modern and sophisticated, our Executive Room offers the perfect workspace with premium amenities and exclusive lounge access for the business traveler.",
-                features: ["Queen Size Bed", "Work Desk", "Lounge Access", "Free Wi-Fi", "Smart TV", "Premium Toiletries"],
-                price: "$199/night"
-            },
-            3: {
-                title: "Presidential Suite",
-                image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-                description: "The pinnacle of luxury, our Presidential Suite offers unmatched elegance with a private terrace, butler service, and panoramic views of the city.",
-                features: ["Master Bedroom", "Private Terrace", "Butler Service", "Jacuzzi", "Dining Area", "Home Theater"],
-                price: "$599/night"
-            },
-            4: {
-                title: "Garden View Room",
-                image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-                description: "A peaceful retreat overlooking our beautifully landscaped gardens, perfect for those seeking tranquility and relaxation.",
-                features: ["Queen Size Bed", "Garden View", "Free Wi-Fi", "Smart TV", "Mini Fridge", "Safe Box"],
-                price: "$179/night"
-            },
-            5: {
-                title: "Ocean View Suite",
-                image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
-                description: "Wake up to breathtaking ocean views from your private balcony in this elegantly appointed suite.",
-                features: ["King Size Bed", "Ocean View", "Private Balcony", "Free Wi-Fi", "Smart TV", "Premium Amenities"],
-                price: "$399/night"
-            },
-            6: {
-                title: "Family Suite",
-                image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800",
-                description: "Spacious accommodations perfect for families, featuring two bedrooms and a comfortable living area.",
-                features: ["Two Bedrooms", "Living Room", "Kitchenette", "Free Wi-Fi", "Smart TV", "Kids Amenities"],
-                price: "$349/night"
-            },
-            7: {
-                title: "Penthouse Suite",
-                image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
-                description: "The epitome of luxury living, our Penthouse Suite offers expansive space across two floors with panoramic views and exclusive amenities.",
-                features: ["Two Floor Layout", "Panoramic Views", "Private Elevator", "Personal Concierge", "Full Kitchen", "Wine Cellar"],
-                price: "$899/night"
-            },
-            8: {
-                title: "Spa Suite",
-                image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
-                description: "Indulge in ultimate relaxation with our Spa Suite featuring an in-room massage area, aromatherapy, and private wellness center access.",
-                features: ["King Size Bed", "Spa Bath", "Massage Area", "Aromatherapy", "Yoga Space", "Wellness Access"],
-                price: "$449/night"
-            }
-        };
-
-        // Show room details
-        function showRoomDetails(roomId) {
-            const room = roomsData[roomId];
-            document.getElementById('modalRoomImage').src = room.image;
-            document.getElementById('modalRoomTitle').textContent = room.title;
-            document.getElementById('modalRoomDescription').textContent = room.description;
-            document.getElementById('modalRoomPrice').textContent = room.price;
-
-            const featuresContainer = document.getElementById('modalRoomFeatures');
-            featuresContainer.innerHTML = room.features.map(feature =>
-                `<div class="feature-item">
-                    <i data-lucide="check" size="16" stroke-width="1.5"></i>
-                    <span>${feature}</span>
-                </div>`
-            ).join('');
-
-            document.getElementById('roomModal').classList.add('active');
-            lucide.createIcons();
-        }
-
-        // Show booking modal
-        function showBookingModal() {
-            closeModal('roomModal');
-            document.getElementById('bookingModal').classList.add('active');
-        }
-
-        // Close modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        // Close modal on outside click
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-        });
-
-        // Handle booking form
-        function handleBooking(e) {
+        // Handle room booking form
+        function handleRoomBooking(e) {
             e.preventDefault();
             alert('Thank you for your booking! We will send you a confirmation email shortly.');
-            closeModal('bookingModal');
             e.target.reset();
         }
 
@@ -2012,7 +2401,4 @@
         });
     </script>
 
-</body>
-
-
-</html>
+</body></html>
