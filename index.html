@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -23,7 +26,12 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
             line-height: 1.2;
@@ -41,15 +49,15 @@
             transition: all 0.4s ease;
         }
 
-        
+
 
         body.home-page nav {
             position: absolute;
-            background: transparent ;
+            background: transparent;
             border-bottom: none;
         }
 
-         body.home-page  nav.navbar-home{
+        body.home-page nav.navbar-home {
             background-color: transparent;
             backdrop-filter: unset;
         }
@@ -70,13 +78,13 @@
             align-items: center;
         }
 
-       
 
 
-         body.home-page nav.scrolled .nav-container {
+
+        body.home-page nav.scrolled .nav-container {
             padding: 1.5rem 3rem;
-            
-        } 
+
+        }
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
@@ -283,7 +291,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
             z-index: 1;
         }
 
@@ -304,7 +312,7 @@
 
         .hero-content p {
             font-size: 1.125rem;
-            color: rgba(255,255,255,0.95);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 3rem;
             font-weight: 300;
             letter-spacing: 0.05em;
@@ -324,7 +332,7 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: all 0.4s ease;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             cursor: pointer;
             animation: fadeInUp 1s ease 0.4s backwards;
         }
@@ -649,7 +657,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -814,7 +822,7 @@
             position: relative;
             border-radius: 0;
             overflow: hidden;
-            height: 500px;
+            height: 400px;
         }
 
         .restaurant-item img {
@@ -833,7 +841,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             color: white;
             padding: 3rem;
         }
@@ -1347,8 +1355,13 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInUp {
@@ -1356,6 +1369,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1450,7 +1464,7 @@
                 padding: 1.5rem 2rem;
             }
 
-            .contact-form{
+            .contact-form {
                 padding: 2rem;
             }
 
@@ -1469,7 +1483,7 @@
                 padding: 7rem 2rem 4rem;
             }
 
-            .restaurant-timing-section{
+            .restaurant-timing-section {
                 padding: 2rem;
             }
 
@@ -1477,7 +1491,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .table-booking{
+            .table-booking {
                 padding: 2rem;
             }
 
@@ -1486,8 +1500,9 @@
             }
         }
     </style>
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="home-page">
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
@@ -1510,7 +1525,7 @@
 
     <!-- Navigation -->
     <nav id="navbar" class="navbar-home">
-        <div class="nav-container " >
+        <div class="nav-container ">
             <div class="logo">AURELIA</div>
             <ul class="nav-links">
                 <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
@@ -1542,7 +1557,9 @@
         <!-- Services Section -->
         <section class="services-section">
             <video class="video-background" autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-hotel-lobby-with-people-walking-4787-large.mp4" type="video/mp4">
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-hotel-lobby-with-people-walking-4787-large.mp4"
+                    type="video/mp4">
             </video>
             <div class="section-content">
                 <h2 class="section-title">Our Premium Services</h2>
@@ -1553,7 +1570,8 @@
                             <i data-lucide="bed-double" size="40" stroke-width="1"></i>
                         </div>
                         <h3>Luxury Rooms</h3>
-                        <p>Experience ultimate comfort in our elegantly designed rooms with stunning views and premium amenities.</p>
+                        <p>Experience ultimate comfort in our elegantly designed rooms with stunning views and premium
+                            amenities.</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
@@ -1567,7 +1585,8 @@
                             <i data-lucide="calendar" size="40" stroke-width="1"></i>
                         </div>
                         <h3>Event Hall</h3>
-                        <p>Host unforgettable events in our state-of-the-art banquet halls with professional event planning services.</p>
+                        <p>Host unforgettable events in our state-of-the-art banquet halls with professional event
+                            planning services.</p>
                     </div>
                 </div>
             </div>
@@ -1614,7 +1633,8 @@
                         </div>
                     </div>
                     <div class="restaurant-item">
-                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600" alt="Breakfast Buffet">
+                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600"
+                            alt="Breakfast Buffet">
                         <div class="restaurant-overlay">
                             <h3>Breakfast Buffet</h3>
                             <p>International selection</p>
@@ -1631,7 +1651,8 @@
                 <p class="section-subtitle">What Our Guests Say</p>
                 <div class="testimonial-carousel">
                     <div class="testimonial-item active">
-                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171" alt="Sarah Johnson" class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171"
+                            alt="Sarah Johnson" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
@@ -1639,12 +1660,14 @@
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                         </div>
-                        <p class="testimonial-text">"An absolutely wonderful experience. The attention to detail and exceptional service made our stay unforgettable."</p>
+                        <p class="testimonial-text">"An absolutely wonderful experience. The attention to detail and
+                            exceptional service made our stay unforgettable."</p>
                         <div class="testimonial-author">Farhan Hussain</div>
                         <div class="testimonial-role">Business Executive</div>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=686" alt="Michael Chen" class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=686"
+                            alt="Michael Chen" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
@@ -1652,12 +1675,14 @@
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                         </div>
-                        <p class="testimonial-text">"The perfect blend of luxury and comfort. Every aspect of the hotel exceeded our expectations."</p>
+                        <p class="testimonial-text">"The perfect blend of luxury and comfort. Every aspect of the hotel
+                            exceeded our expectations."</p>
                         <div class="testimonial-author">Mina Chen</div>
                         <div class="testimonial-role">Travel Blogger</div>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://images.unsplash.com/photo-1575863527524-974033023c2f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880" alt="Emma Rodriguez" class="testimonial-profile">
+                        <img src="https://images.unsplash.com/photo-1575863527524-974033023c2f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880"
+                            alt="Emma Rodriguez" class="testimonial-profile">
                         <div class="testimonial-rating">
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
@@ -1665,7 +1690,8 @@
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                             <i data-lucide="star" size="20" fill="#C9A963" stroke-width="0"></i>
                         </div>
-                        <p class="testimonial-text">"From the elegant rooms to the exquisite dining, everything was flawless. Highly recommended!"</p>
+                        <p class="testimonial-text">"From the elegant rooms to the exquisite dining, everything was
+                            flawless. Highly recommended!"</p>
                         <div class="testimonial-author">Emma Rodriguez</div>
                         <div class="testimonial-role">Designer</div>
                     </div>
@@ -1708,20 +1734,33 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form onsubmit="handleContact(event)">
+                        <form method="POST" action="contact.php">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" required>
+                                <input type="text" name="name" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" required>
+                                <input type="email" name="email" required>
                             </div>
+
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="text" name="subject">
+                            </div>
+
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea required></textarea>
+                                <textarea name="message" required></textarea>
                             </div>
-                            <button type="submit" class="btn-secondary" style="width: 100%;">Send Message</button>
+
+                            <button type="submit" class="btn-secondary">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -1781,7 +1820,7 @@
             <div class="section-content">
                 <!-- <h1 class="section-title">Our Rooms</h1>
                 <p class="section-subtitle">Find Your Perfect Sanctuary</p> -->
-                
+
                 <div class="rooms-categories" id="roomsCategories">
                     <!-- Categories will be populated by JavaScript -->
                 </div>
@@ -1861,8 +1900,9 @@
                         <h1 id="roomDetailTitle"></h1>
                         <span class="room-category" id="roomCategory"></span>
                         <p id="roomDetailDescription"></p>
-                        
-                        <h3 style="font-size: 2rem; font-weight: 400; margin-bottom: 2rem; margin-top: 3rem;">Room Features</h3>
+
+                        <h3 style="font-size: 2rem; font-weight: 400; margin-bottom: 2rem; margin-top: 3rem;">Room
+                            Features</h3>
                         <div class="room-features-grid" id="roomFeatures">
                             <!-- Features will be populated by JavaScript -->
                         </div>
@@ -1872,22 +1912,25 @@
                         <div class="room-price-large" id="roomDetailPrice"></div>
                         <p class="price-subtitle">Per night</p>
 
-                        <form class="booking-form-inline" onsubmit="handleRoomBooking(event)">
+                        <form method="POST" action="booking.php" class="booking-form-inline">
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" required>
+                                <input type="text" name="full_name" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" required>
+                                <input type="email" name="email" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="tel" required>
+                                <input type="tel" name="phone" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Room Category</label>
-                                <select required id="roomCategorySelect" disabled>
+                                <select name="room_category" id="roomCategorySelect">
                                     <option value="">Select Category</option>
                                     <option value="Standard Room">Standard Room</option>
                                     <option value="Deluxe Room">Deluxe Room</option>
@@ -1895,24 +1938,30 @@
                                     <option value="Presidential Suite">Presidential Suite</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>Check-in Date</label>
-                                <input type="date" required>
+                                <input type="date" name="checkin_date">
                             </div>
+
                             <div class="form-group">
                                 <label>Check-out Date</label>
-                                <input type="date" required>
+                                <input type="date" name="checkout_date">
                             </div>
+
                             <div class="form-group">
                                 <label>Guests</label>
-                                <input type="number" min="1" max="4" required>
+                                <input type="number" name="guests" min="1" max="4" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Special Requests</label>
-                                <textarea></textarea>
+                                <textarea name="special_requests"></textarea>
                             </div>
+
                             <button type="submit" class="btn-secondary" style="width: 100%;">Book Now</button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -1971,13 +2020,14 @@
             <div class="section-content">
                 <h1 class="section-title">Our Menu</h1>
                 <p class="section-subtitle">A Culinary Experience</p>
-                
+
                 <div class="menu-section">
                     <div class="menu-category">
                         <h2>Starters</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1608032077018-c9aad9565d29?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Caesar Salad" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1608032077018-c9aad9565d29?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                    alt="Caesar Salad" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Caesar Salad</h3>
                                     <p>Crisp romaine, parmesan, croutons, classic dressing</p>
@@ -1985,7 +2035,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1594978583693-8dfdfc93f052?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172" alt="Bruschetta" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1594978583693-8dfdfc93f052?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172"
+                                    alt="Bruschetta" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Bruschetta</h3>
                                     <p>Toasted bread, tomatoes, basil, garlic, olive oil</p>
@@ -1993,7 +2044,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1478749485505-2a903a729c63?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Soup" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1478749485505-2a903a729c63?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                    alt="Soup" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Soup of the Day</h3>
                                     <p>Chef's special seasonal soup</p>
@@ -2001,7 +2053,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1632158929413-168599fffbf7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1972" alt="Calamari" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1632158929413-168599fffbf7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1972"
+                                    alt="Calamari" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Calamari Fritti</h3>
                                     <p>Crispy fried squid with lemon aioli</p>
@@ -2015,7 +2068,8 @@
                         <h2>Main Course</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Grilled Salmon" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                    alt="Grilled Salmon" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Grilled Salmon</h3>
                                     <p>Atlantic salmon, seasonal vegetables, lemon butter</p>
@@ -2023,7 +2077,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Ribeye Steak" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                    alt="Ribeye Steak" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Ribeye Steak</h3>
                                     <p>12oz prime beef, mashed potatoes, red wine jus</p>
@@ -2031,7 +2086,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1094" alt="Pasta Carbonara" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1094"
+                                    alt="Pasta Carbonara" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Pasta Carbonara</h3>
                                     <p>Spaghetti, bacon, egg, parmesan, black pepper</p>
@@ -2039,7 +2095,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Chicken Piccata" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                    alt="Chicken Piccata" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Chicken Piccata</h3>
                                     <p>Pan-seared chicken, lemon caper sauce, pasta</p>
@@ -2053,7 +2110,8 @@
                         <h2>Desserts</h2>
                         <div class="menu-grid">
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1724116379273-ba32b70d112c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1025" alt="Tiramisu" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1724116379273-ba32b70d112c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1025"
+                                    alt="Tiramisu" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Tiramisu</h3>
                                     <p>Classic Italian dessert with espresso and mascarpone</p>
@@ -2061,7 +2119,8 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1673551490812-eaee2e9bf0ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070" alt="Chocolate Lava Cake" class="menu-item-image">
+                                <img src="https://images.unsplash.com/photo-1673551490812-eaee2e9bf0ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
+                                    alt="Chocolate Lava Cake" class="menu-item-image">
                                 <div class="menu-item-content">
                                     <h3>Chocolate Lava Cake</h3>
                                     <p>Warm chocolate cake with vanilla ice cream</p>
@@ -2104,33 +2163,42 @@
                     </div>
                     <div class="table-booking">
                         <h2>Reserve a Table</h2>
-                        <form onsubmit="handleTableBooking(event)">
+                        <form method="POST" action="table_booking.php">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" required>
+                                <input type="text" name="name" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" required>
+                                <input type="email" name="email" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="tel" required>
+                                <input type="tel" name="phone" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Date</label>
-                                <input type="date" required>
+                                <input type="date" name="date" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Time</label>
-                                <input type="time" required>
+                                <input type="time" name="time" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Guests</label>
-                                <input type="number" min="1" max="20" required>
+                                <input type="number" name="guests" min="1" max="20" required>
                             </div>
-                            <button type="submit" class="btn-secondary" style="width: 100%; margin-top: 10px;">Reserve Table</button>
+
+                            <button type="submit" class="btn-secondary" style="width: 100%; margin-top: 10px;">
+                                Reserve Table
+                            </button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -2252,24 +2320,26 @@
             </div>
 
             <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                 </iframe>
             </div>
 
             <div class="section-content">
                 <div class="about-section">
-                    <img src="https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964" alt="About Hotel" class="about-image">
+                    <img src="https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1964"
+                        alt="About Hotel" class="about-image">
                     <div class="about-text">
                         <h2>AURELIA</h2>
-                        <p>AURELIA has been a landmark of exceptional hospitality since 1985. Our commitment to excellence and attention to detail has made us a preferred destination for discerning travelers from around the world.</p>
-                        <p>With 200 elegantly appointed rooms and suites, world-class dining options, and state-of-the-art facilities, we offer an unparalleled experience that combines timeless elegance with modern comfort.</p>
-                        <p>Our dedicated team of hospitality professionals is committed to making every stay memorable, whether you're traveling for business or pleasure.</p>
+                        <p>AURELIA has been a landmark of exceptional hospitality since 1985. Our commitment to
+                            excellence and attention to detail has made us a preferred destination for discerning
+                            travelers from around the world.</p>
+                        <p>With 200 elegantly appointed rooms and suites, world-class dining options, and
+                            state-of-the-art facilities, we offer an unparalleled experience that combines timeless
+                            elegance with modern comfort.</p>
+                        <p>Our dedicated team of hospitality professionals is committed to making every stay memorable,
+                            whether you're traveling for business or pleasure.</p>
                     </div>
                 </div>
             </div>
@@ -2341,16 +2411,16 @@
 
         // Navigation scroll effect (only for home page)
         window.addEventListener('scroll', () => {
-            
+
             const navbar = document.getElementById('navbar');
-            
+
             if (document.body.classList.contains('home-page') && window.scrollY > 170) {
                 navbar.classList.add('scrolled');
-                
-                
+
+
             } else if (document.body.classList.contains('home-page')) {
                 navbar.classList.remove('scrolled');
-                
+
             }
         });
 
@@ -2396,9 +2466,9 @@
         function populateRoomsCarousel() {
             const carousel = document.getElementById('roomsCarousel');
             let html = '';
-            
+
             // Display first 8 rooms in carousel
-            Object.keys(roomsData).slice(0,9).forEach(id => {
+            Object.keys(roomsData).slice(0, 9).forEach(id => {
                 const room = roomsData[id];
                 html += `
                     <div class="room-card" onclick="showRoomDetail(${id})">
@@ -2411,7 +2481,7 @@
                     </div>
                 `;
             });
-            
+
             carousel.innerHTML = html;
         }
 
@@ -2419,7 +2489,7 @@
         function populateRoomsPage() {
             const container = document.getElementById('roomsCategories');
             let html = '';
-            
+
             Object.keys(categories).forEach(categoryName => {
                 const category = categories[categoryName];
                 if (category.rooms.length > 0) {
@@ -2431,7 +2501,7 @@
                             </div>
                             <div class="rooms-grid">
                     `;
-                    
+
                     category.rooms.forEach(room => {
                         html += `
                             <div class="room-card" onclick="showRoomDetail(${room.id})">
@@ -2444,14 +2514,14 @@
                             </div>
                         `;
                     });
-                    
+
                     html += `
                             </div>
                         </div>
                     `;
                 }
             });
-            
+
             container.innerHTML = html;
         }
 
@@ -2459,21 +2529,21 @@
         function navigateTo(pageId) {
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
-            
+
             navLinks.forEach(l => l.classList.remove('active'));
             const activeLink = document.querySelector(`[data-page="${pageId}"]`);
             if (activeLink) activeLink.classList.add('active');
-            
+
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
+
             // Update body class for home page
             if (pageId === 'home') {
                 document.body.classList.add('home-page');
             } else {
                 document.body.classList.remove('home-page');
             }
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
             lucide.createIcons();
         }
@@ -2505,15 +2575,15 @@
             const totalCards = carousel.querySelectorAll('.room-card').length;
             const visibleCards = Math.floor(carousel.parentElement.offsetWidth / (carousel.querySelector('.room-card').offsetWidth + 48));
             const maxIndex = totalCards - visibleCards;
-            
+
             currentCarouselIndex += direction;
-            
+
             if (currentCarouselIndex < 0) {
                 currentCarouselIndex = maxIndex;
             } else if (currentCarouselIndex > maxIndex) {
                 currentCarouselIndex = 0;
             }
-            
+
             updateCarousel();
             resetCarouselInterval();
         }
@@ -2523,7 +2593,7 @@
             const totalCards = carousel.querySelectorAll('.room-card').length;
             const visibleCards = Math.floor(carousel.parentElement.offsetWidth / (carousel.querySelector('.room-card').offsetWidth + 48));
             const totalDots = totalCards - visibleCards + 1;
-            
+
             dotsContainer.innerHTML = '';
             for (let i = 0; i < totalDots; i++) {
                 const dot = document.createElement('span');
@@ -2572,43 +2642,41 @@
 
         function showRoomDetail(roomId) {
             const room = roomsData[roomId];
-            
+
             document.getElementById('roomDetailTitle').textContent = room.title;
             document.getElementById('roomCategory').textContent = room.category;
             document.getElementById('roomDetailDescription').textContent = room.description;
             document.getElementById('roomDetailPrice').textContent = room.price;
-            
+
             // Set and disable the category select
-            const categorySelect = document.getElementById('roomCategorySelect');
-            categorySelect.value = room.category;
-            categorySelect.disabled = true;
-            
+
+
             const featuresContainer = document.getElementById('roomFeatures');
-            featuresContainer.innerHTML = room.features.map(feature => 
+            featuresContainer.innerHTML = room.features.map(feature =>
                 `<div class="feature-item">
                     <i data-lucide="check" size="18" stroke-width="1.5"></i>
                     <span>${feature}</span>
                 </div>`
             ).join('');
-            
+
             const slider = document.getElementById('roomSlider');
-            slider.innerHTML = room.images.map(img => 
+            slider.innerHTML = room.images.map(img =>
                 `<div class="room-slide">
                     <img src="${img}" alt="${room.title}">
                 </div>`
             ).join('');
-            
+
             const dotsContainer = document.getElementById('sliderDots');
-            dotsContainer.innerHTML = room.images.map((_, index) => 
+            dotsContainer.innerHTML = room.images.map((_, index) =>
                 `<span class="slider-dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></span>`
             ).join('');
-            
+
             currentSlideIndex = 0;
-            
+
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('roomDetail').classList.add('active');
             document.body.classList.remove('home-page');
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
             lucide.createIcons();
         }
@@ -2616,15 +2684,15 @@
         function moveSlider(direction) {
             const slider = document.getElementById('roomSlider');
             const slides = slider.querySelectorAll('.room-slide');
-            
+
             currentSlideIndex += direction;
-            
+
             if (currentSlideIndex < 0) {
                 currentSlideIndex = slides.length - 1;
             } else if (currentSlideIndex >= slides.length) {
                 currentSlideIndex = 0;
             }
-            
+
             slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
             updateSliderDots();
         }
@@ -2651,7 +2719,7 @@
         function showTestimonial(index) {
             testimonials.forEach(t => t.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
-            
+
             testimonials[index].classList.add('active');
             dots[index].classList.add('active');
             currentTestimonial = index;
@@ -2686,9 +2754,5 @@
         });
     </script>
 </body>
+
 </html>
-
-
-
-
-
